@@ -15,7 +15,7 @@ public class JDBCExample12 {
         String pass = "root123";
         try {
             Connection con = DriverManager.getConnection(url, user, pass);
-            Statement st = con.createStatement();
+            Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             String sql = "select * from student";
             ResultSet rs = st.executeQuery(sql);
             System.out.println("rno  name    per   city");

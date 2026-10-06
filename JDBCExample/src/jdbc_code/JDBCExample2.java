@@ -8,11 +8,13 @@ public class JDBCExample2 {
 
     public static void main(String[] args) throws SQLException {
         try {
+            
             String url = "jdbc:mysql://localhost:3306/collage";
             String user = "root";
             String pass = "root123";
-
             Connection con = DriverManager.getConnection(url, user, pass);
+            
+            
             Statement stmnt = con.createStatement();
             String sql1 = "insert into student values(101,'ram',56.89,'ujjain')";
             String sql2 = "insert into student values(102,'shyam',78.89,'indore'),(103,'vikas',18.89,'ratlam')";
