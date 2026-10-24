@@ -11,11 +11,13 @@ import java.io.PrintWriter;
 public class ResultShow extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String name = request.getParameter("uname");
-        String stdName;
-        String rno;
-        String per;
-        String gread;
+        PrintWriter out = response.getWriter();
+        String name = request.getParameter("t1"); // shyam
+        String stdName = null;
+        String rno = null;
+        String per = null;
+        String gread = null;
+        boolean stfind = true;
         switch (name) {
             case "ram":
                 stdName = "ram sharma";
@@ -35,13 +37,36 @@ public class ResultShow extends HttpServlet {
                 per = "50.56";
                 gread = "C Gread";
                 break;
+            case "yogesh":
+                stdName = "yogesh mandloi";
+                rno = "104";
+                per = "75.56";
+                gread = "B Gread";
+                break;
+            default:
+                stfind = false;
+                out.println("<html>");
+                out.println("<body style=\"font-family: cursive;background-color: skyblue\">");
+                out.println("<h1>Student not found</h1>");
+                out.println("<a href='result.jsp' >Go to Form</a>");
+                out.println("</body>");
+                out.println("</html>");
+
         }
 
-        PrintWriter out = response.getWriter();
-        out.println("<html>");
-        out.println("<body>");
-        out.println("<h1>"+name+"</h1>");
-        out.println("</body>");
-        out.println("</html>");
+        if (stfind) {
+            out.println("<html>");
+            out.println("<body style=\"font-family: cursive;background-color: skyblue\">");
+            out.println("<h1> Student Result Card :</h1>");
+            out.println("<hr>");
+            out.println("<h2> Student name : " + stdName + " </h2>");
+            out.println("<h2> Student rno : " + rno + " </h2>");
+            out.println("<h2> Student per : " + per + " </h2>");
+            out.println("<h2> Student Gread : " + gread + " </h2>");
+            out.println("<hr>");
+            out.println("<a href='result.jsp' >Go to Form</a>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 }
