@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/loginservlet")
 public class LoginServlet extends HttpServlet {
@@ -15,7 +16,13 @@ public class LoginServlet extends HttpServlet {
         String name = request.getParameter("uname");
         String password = request.getParameter("pass");
         if (name.equals("ram123") && password.equals("1234")) {
-            request.setAttribute("user", name);
+            
+            
+            HttpSession session = request.getSession();
+            session.setAttribute("user", name);
+            
+            
+//            request.setAttribute("user", name);
             RequestDispatcher rd = request.getRequestDispatcher("dashboard.jsp");
             rd.forward(request, response);
         } else if (name.equals("yogesh123") && password.equals("1236")) {
